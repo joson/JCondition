@@ -4,9 +4,6 @@ import java.lang.ref.WeakReference;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.josonprog.common.tree.PostorderIterator;
-import com.josonprog.common.tree.TreeIterator;
-
 public abstract class AbstractExpressionNode implements ExpressionNode {
 	private ExpressionElement elem;
 	
@@ -95,8 +92,8 @@ public abstract class AbstractExpressionNode implements ExpressionNode {
 	 * @return Tree iterator.
 	 */
 	@Override
-	public TreeIterator iterate() {
-		return new PostorderIterator(this);
+	public ExpressionIterator iterate() {
+		return new ExpressionIterator(this);
 	}
 
 	@Override

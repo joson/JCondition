@@ -8,8 +8,8 @@ public abstract class BoolOperator extends AbstractOperator<Boolean> {
 		super();
 	}
 
-	public BoolOperator(int operandCount) {
-		super(operandCount);
+	public BoolOperator(int operandCount, int priority) {
+		super(operandCount, priority);
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import com.josonprog.common.expression.Operand;
 public class LikeOperator extends AbstractOperator<Boolean> {
 
 	public LikeOperator() {
-		super(2);
+		super(2, 7);
 	}
 	
 

@@ -5,7 +5,7 @@ import com.josonprog.common.expression.Operand;
 public final class NotOperator extends BoolOperator {
 
 	public NotOperator() {
-		super(1);
+		super(1, 2);
 	}
 
 

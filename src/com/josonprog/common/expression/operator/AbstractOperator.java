@@ -11,24 +11,34 @@ import com.josonprog.common.expression.Operator;
  * @param <T>
  */
 public abstract class AbstractOperator<T extends Comparable<?>> implements Operator<T>{
-	protected int operandCount = 0;
+	private int operandCount = 0;
+	
+	private int priority = 9999;
 
 	public AbstractOperator() {
-		super();
 	}
 
-	public AbstractOperator(int operandCount) {
-		super();
+	public AbstractOperator(int operandCount, int priority) {
 		this.operandCount = operandCount;
+		this.priority = priority;
 	}
 	
-	
+	@Override
 	public int getOperandCount() {
 		return operandCount;
 	}
 
-	public void setOperandCount(int operandCount) {
+	protected void setOperandCount(int operandCount) {
 		this.operandCount = operandCount;
+	}
+
+	@Override
+	public int getPriority() {
+		return priority;
+	}
+
+	protected void setPriority(int priority) {
+		this.priority = priority;
 	}
 
 	/**

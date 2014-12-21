@@ -22,5 +22,9 @@ public interface Operator<T extends Comparable<?>> extends ExpressionElement {
 	 * @exception throw this exception if operands' type or amount are illegal.
 	 */
 	public abstract Operand<T> operate(Operand<?>... operands) throws IllegalArgumentException;
+
+	int getOperandCount();
+
+	int getPriority();
 	
 }

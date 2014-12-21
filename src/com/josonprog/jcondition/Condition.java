@@ -10,34 +10,34 @@ public class Condition extends Expression {
 		super();
 	}
 	
-	public Condition(Operator<?> operator, Operand<?>... operands) {
+	public Condition(Operator<Boolean> operator, Operand<?>... operands) {
 		super(operator, operands);
 	}
 
-	public Condition and(Operator<?> operator, Operand<?>... operands) {
+	public Condition and(Operator<Boolean> operator, Operand<?>... operands) {
 		Expression subExpr = new Expression(operator, operands);
 		
-		this.append(Expression.AND, subExpr.getRoot());
+		this.append(Expression.AND, subExpr);
 		
 		return this;
 	}
 
 	public Condition and(Condition subcondition) {
-		this.append(Expression.AND, subcondition.getRoot());
+		this.append(Expression.AND, subcondition);
 		
 		return this;
 	}
 
-	public Condition or(Operator<?> operator, Operand<?>... operands) {
+	public Condition or(Operator<Boolean> operator, Operand<?>... operands) {
 		Expression subExpr = new Expression(operator, operands);
 		
-		this.append(Expression.OR, subExpr.getRoot());
+		this.append(Expression.OR, subExpr);
 		
 		return this;
 	}
 
 	public Condition or(Condition subcondition) {
-		this.append(Expression.OR, subcondition.getRoot());
+		this.append(Expression.OR, subcondition);
 		
 		return this;
 	}

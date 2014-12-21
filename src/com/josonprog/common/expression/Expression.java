@@ -107,7 +107,7 @@ public class Expression {
 		this.root = parent;
 	}
 	
-	public void append(Operator<?> operator, ExpressionNode... subExprs) {
+	public void append(Operator<?> operator, Expression... subExprs) {
 
 		ExpressionNode parent = new DefaultExpressionNode(operator);
 		
@@ -117,7 +117,7 @@ public class Expression {
 
 		ExpressionNode child;
 		for (int i = 0, len = subExprs.length; i < len; i++) {
-			child = subExprs[i];
+			child = subExprs[i].getRoot();
 			parent.addChild(child);
 		}
 		
@@ -132,5 +132,7 @@ public class Expression {
 		this.root = root;
 	}
 	
-	
+	public ExpressionIterator iterate() {
+		return this.root.iterate();
+	}
 }

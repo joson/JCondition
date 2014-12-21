@@ -1,6 +1,5 @@
 package com.josonprog.common.expression;
 
-import com.josonprog.common.tree.TreeIterator;
 import com.josonprog.common.tree.TreeNode;
 
 public interface ExpressionNode extends TreeNode {
@@ -18,7 +17,7 @@ public interface ExpressionNode extends TreeNode {
 	ExpressionNode nextBrother();
 
 	@Override
-	TreeIterator iterate();
+	ExpressionIterator iterate();
 
 	/**
 	 * Append an expression node as child.

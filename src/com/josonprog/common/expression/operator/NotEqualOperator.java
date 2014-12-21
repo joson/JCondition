@@ -4,6 +4,10 @@ import com.josonprog.common.expression.Operand;
 
 public final class NotEqualOperator extends CompareOperator {
 
+	public NotEqualOperator() {
+		super(7);
+	}
+
 	@Override
 	protected Boolean doOperate(Operand<?>... operands) {
 		// left operand.

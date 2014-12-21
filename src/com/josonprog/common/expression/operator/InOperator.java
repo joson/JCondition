@@ -9,7 +9,7 @@ import com.josonprog.common.expression.Operand;
 public class InOperator extends AbstractOperator<Boolean> {
 
 	public InOperator() {
-		super(2);
+		super(2, 7);
 	}
 	
 

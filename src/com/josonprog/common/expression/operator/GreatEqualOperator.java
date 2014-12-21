@@ -4,6 +4,10 @@ import com.josonprog.common.expression.Operand;
 
 public final class GreatEqualOperator extends CompareOperator {
 
+	public GreatEqualOperator() {
+		super(6);
+	}
+
 	@Override
 	protected Boolean doOperate(Operand<?>... operands) {
 		// left operand.

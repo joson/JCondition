@@ -4,7 +4,7 @@ import com.josonprog.common.expression.Operand;
 
 public class AndOperator extends BoolOperator {
 	public AndOperator() {
-		super(2);
+		super(2, 11);
 	}
 
 
