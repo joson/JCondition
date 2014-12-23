@@ -20,11 +20,11 @@ public class LikeOperator extends AbstractOperator<Boolean> {
 		Object regex = operands[1].getValue();
 
 		// The value must be null or a string.
-		if (value != null && String.class.isInstance(value))
+		if (value != null && value instanceof String)
 			return false;
 		
 		// Regular expression could not be null.
-		if (regex == null || String.class.isInstance(regex))
+		if (regex == null || regex instanceof String)
 			return false;
 		
 		return true;

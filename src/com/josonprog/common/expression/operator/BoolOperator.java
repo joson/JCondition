@@ -18,7 +18,7 @@ public abstract class BoolOperator extends AbstractOperator<Boolean> {
 		
 		for (int i = 0, len = operands.length; i < len; i++) {
 			operand = operands[i];
-			if (operand == null || !Boolean.class.isInstance(operand)) {
+			if (operand == null || !(operand.getValue() instanceof Boolean)) {
 				return false;
 			}
 		}

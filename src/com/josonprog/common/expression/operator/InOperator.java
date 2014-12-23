@@ -21,7 +21,7 @@ public class InOperator extends AbstractOperator<Boolean> {
 		Object optionalList = operands[1].getValue();
 
 		// Regular expression could not be null.
-		if (optionalList == null || ArrayList.class.isInstance(optionalList))
+		if (optionalList == null || optionalList instanceof ArrayList)
 			return false;
 		
 		return true;

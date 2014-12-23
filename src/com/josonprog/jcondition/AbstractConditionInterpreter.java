@@ -30,7 +30,7 @@ public abstract class AbstractConditionInterpreter implements ConditionInterpret
 			child = expr.child(i);
 			elem = child.getElem();
 			
-			if (Operator.class.isInstance(elem)) {
+			if (elem instanceof Operator) {
 				childPriority = ((Operator<?>) elem).getPriority();
 				
 				if (priority <= childPriority) {
@@ -42,7 +42,7 @@ public abstract class AbstractConditionInterpreter implements ConditionInterpret
 					operandDescs[i] = this.interpretNode(child);
 				}
 				
-			} else if (Operand.class.isInstance(elem)) {
+			} else if (elem instanceof Operand) {
 				operandDescs[i] = this.interpretOperand((Operand<?>) elem);
 			}
 		}
