@@ -1,7 +1,5 @@
 package com.josonprog.common.expression;
 
-import org.apache.commons.lang.ObjectUtils;
-
 /**
  * Operand, to wrap operand constant value or variable.
  * 
@@ -9,34 +7,28 @@ import org.apache.commons.lang.ObjectUtils;
  *
  * @param <T>
  */
-public class Operand<T extends Comparable<?>> 
-		implements ExpressionElement, Comparable<Operand<?>> {
+public class Operand 
+		implements ExpressionElement {
 	
-	protected T value;
+	protected Object value;
 	
 	public Operand() {}
 	
-	public Operand(T value) {
+	public Operand(Object value) {
 		this.value = value;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public Class<T> getValueType() {
-		return value == null ? null : (Class<T>) value.getClass();
+	public Class<?> getValueType() {
+		return value == null ? null : value.getClass();
 	}
 	
-	public T getValue() {
+	public Object getValue() {
 		return value;
 	}
 	
-	
-	public static <K extends Comparable<?>> Operand<K> wrap(K value) {
-		return new Operand<K>(value);
+	/*
+	public static Operand wrap(Object value) {
+		return new Operand(value);
 	}
-
-	@Override
-	public int compareTo(Operand<?> o) {
-		return ObjectUtils.compare(this.getValue(), o.getValue());
-	}
-	
+*/
 }

@@ -9,13 +9,13 @@ public final class EqualOperator extends CompareOperator {
 	}
 
 	@Override
-	protected Boolean doOperate(Operand<?>... operands) {
+	protected Boolean doOperate(Operand... operands) {
 		// left operand.
-		Operand<?> operand1 = this.getOperand(0, operands);
+		Operand operand1 = operands[0];
 		
 		// right operand.
-		Operand<?> operand2 = this.getOperand(1, operands);
+		Operand operand2 = operands[1];
 
-		return operand1.compareTo(operand2) == 0;
+		return CompareOperator.compareTo(operand1, operand2) == 0;
 	}
 }

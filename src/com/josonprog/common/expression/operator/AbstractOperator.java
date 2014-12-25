@@ -1,5 +1,6 @@
 package com.josonprog.common.expression.operator;
 
+import com.josonprog.common.expression.Constant;
 import com.josonprog.common.expression.Operand;
 import com.josonprog.common.expression.Operator;
 
@@ -10,7 +11,7 @@ import com.josonprog.common.expression.Operator;
  *
  * @param <T>
  */
-public abstract class AbstractOperator<T extends Comparable<?>> implements Operator<T>{
+public abstract class AbstractOperator<T> implements Operator<T>{
 	private int operandCount = 0;
 	
 	private int priority = 9999;
@@ -47,7 +48,7 @@ public abstract class AbstractOperator<T extends Comparable<?>> implements Opera
 	 * @param operands
 	 * @exception IllegalArgumentException 
 	 */
-	protected void prepareOperand(Operand<?>... operands) throws IllegalArgumentException {
+	protected void prepareOperand(Operand... operands) throws IllegalArgumentException {
 		// validate amount of operands.
 		if (operands.length != this.operandCount) {
 			StringBuffer msg = new StringBuffer();
@@ -63,7 +64,7 @@ public abstract class AbstractOperator<T extends Comparable<?>> implements Opera
 		}
 	}
 	
-	protected boolean validateOperandTypes(Operand<?>...operands) {
+	protected boolean validateOperandTypes(Operand...operands) {
 		for (int i = 0, len = operands.length; i < len; i++) {
 			if (operands[i] == null) {
 				return false;
@@ -74,13 +75,13 @@ public abstract class AbstractOperator<T extends Comparable<?>> implements Opera
 	}
 
 	@Override
-	public final Operand<T> operate(Operand<?>... operands)
+	public final Operand operate(Operand... operands)
 			throws IllegalArgumentException {
 		this.prepareOperand(operands);
 		
 		T res = this.doOperate(operands);
 		
-		return Operand.<T>wrap(res);
+		return Constant.wrap(res);
 	}
 	
 
@@ -91,10 +92,6 @@ public abstract class AbstractOperator<T extends Comparable<?>> implements Opera
 	 * @param operands
 	 * @return
 	 */
-	protected abstract T doOperate(Operand<?>... operands);
+	protected abstract T doOperate(Operand... operands);
 	
-	@SuppressWarnings("unchecked")
-	protected <K> K getOperand(int i, Operand<?>...operands) {
-		return (K) operands[i];
-	}
 }

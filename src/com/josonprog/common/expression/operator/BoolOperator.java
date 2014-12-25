@@ -13,8 +13,8 @@ public abstract class BoolOperator extends AbstractOperator<Boolean> {
 	}
 
 	@Override
-	protected boolean validateOperandTypes(Operand<?>... operands) {
-		Operand<?> operand;
+	protected boolean validateOperandTypes(Operand... operands) {
+		Operand operand;
 		
 		for (int i = 0, len = operands.length; i < len; i++) {
 			operand = operands[i];

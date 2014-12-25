@@ -14,7 +14,7 @@ public class InOperator extends AbstractOperator<Boolean> {
 	
 
 	@Override
-	protected boolean validateOperandTypes(Operand<?>... operands) {
+	protected boolean validateOperandTypes(Operand... operands) {
 		if (!super.validateOperandTypes(operands))
 			return false;
 		
@@ -28,7 +28,7 @@ public class InOperator extends AbstractOperator<Boolean> {
 	}
 
 	@Override
-	protected Boolean doOperate(Operand<?>... operands) {
+	protected Boolean doOperate(Operand... operands) {
 		
 		Object value = operands[0].getValue();
 		Object[] optionalList = ((ArrayList<?>) operands[1].getValue()).toArray();

@@ -12,7 +12,7 @@ public class LikeOperator extends AbstractOperator<Boolean> {
 	
 
 	@Override
-	protected boolean validateOperandTypes(Operand<?>... operands) {
+	protected boolean validateOperandTypes(Operand... operands) {
 		if (!super.validateOperandTypes(operands))
 			return false;
 		
@@ -31,7 +31,7 @@ public class LikeOperator extends AbstractOperator<Boolean> {
 	}
 
 	@Override
-	protected Boolean doOperate(Operand<?>... operands) {
+	protected Boolean doOperate(Operand... operands) {
 		
 		String value = (String) operands[0].getValue();
 		String regex = (String) operands[1].getValue();

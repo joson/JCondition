@@ -9,8 +9,8 @@ public class OrOperator extends BoolOperator {
 
 
 	@Override
-	protected Boolean doOperate(Operand<?>... operands) {
-		return this.<Boolean>getOperand(0, operands) || this.<Boolean>getOperand(1, operands);
+	protected Boolean doOperate(Operand... operands) {
+		return ((Boolean) operands[0].getValue()) || ((Boolean) operands[1].getValue());
 	}
 
 }

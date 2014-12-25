@@ -24,7 +24,7 @@ public class SqlInterpreter extends AbstractConditionInterpreter implements
 	}
 
 	@Override
-	protected String interpretOperand(Operand<?> operand) {
+	protected String interpretOperand(Operand operand) {
 		// TODO Auto-generated method stub
 		return null;
 	}

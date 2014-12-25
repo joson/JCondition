@@ -74,11 +74,11 @@ public class Expression {
 	
 	public Expression() {}
 	
-	public Expression(Operator<?> operator, Operand<?>... operands) {
+	public Expression(Operator<?> operator, Operand... operands) {
 		this.root = this.buildExpNode(operator, operands);
 	}
 	
-	protected ExpressionNode buildExpNode(Operator<?> operator, Operand<?>... operands) {
+	protected ExpressionNode buildExpNode(Operator<?> operator, Operand... operands) {
 		ExpressionNode parent = new DefaultExpressionNode(operator);
 		
 		ExpressionNode child;
@@ -90,7 +90,7 @@ public class Expression {
 		return parent;
 	}
 	
-	public void append(Operator<?> operator, Operand<?>... otherOperands) {
+	public void append(Operator<?> operator, Operand... otherOperands) {
 		
 		ExpressionNode parent = new DefaultExpressionNode(operator);
 		

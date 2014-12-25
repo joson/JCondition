@@ -7,7 +7,7 @@ package com.josonprog.common.expression;
  *
  * @param <T>
  */
-public interface Operator<T extends Comparable<?>> extends ExpressionElement {
+public interface Operator<T> extends ExpressionElement {
 	/**
 	 * Operation.
 	 * 
@@ -21,7 +21,7 @@ public interface Operator<T extends Comparable<?>> extends ExpressionElement {
 	 * @return operation result.
 	 * @exception throw this exception if operands' type or amount are illegal.
 	 */
-	public abstract Operand<T> operate(Operand<?>... operands) throws IllegalArgumentException;
+	public abstract Operand operate(Operand... operands) throws IllegalArgumentException;
 
 	int getOperandCount();
 

@@ -43,7 +43,7 @@ public abstract class AbstractConditionInterpreter implements ConditionInterpret
 				}
 				
 			} else if (elem instanceof Operand) {
-				operandDescs[i] = this.interpretOperand((Operand<?>) elem);
+				operandDescs[i] = this.interpretOperand((Operand) elem);
 			}
 		}
 		
@@ -51,7 +51,7 @@ public abstract class AbstractConditionInterpreter implements ConditionInterpret
 	}
 	
 
-	protected abstract String interpretOperand(Operand<?> operand);
+	protected abstract String interpretOperand(Operand operand);
 	
 	protected abstract String interpretOperator(Operator<?> operator, String[] operandDescriptions);
 	

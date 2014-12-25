@@ -10,7 +10,7 @@ public final class NotOperator extends BoolOperator {
 
 
 	@Override
-	protected Boolean doOperate(Operand<?>... operands) {
-		return !this.<Boolean>getOperand(0, operands);
+	protected Boolean doOperate(Operand... operands) {
+		return !((Boolean) operands[0].getValue());
 	}
 }

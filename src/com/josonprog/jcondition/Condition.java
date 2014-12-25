@@ -10,11 +10,11 @@ public class Condition extends Expression {
 		super();
 	}
 	
-	public Condition(Operator<Boolean> operator, Operand<?>... operands) {
+	public Condition(Operator<Boolean> operator, Operand... operands) {
 		super(operator, operands);
 	}
 
-	public Condition and(Operator<Boolean> operator, Operand<?>... operands) {
+	public Condition and(Operator<Boolean> operator, Operand... operands) {
 		Expression subExpr = new Expression(operator, operands);
 		
 		this.append(Expression.AND, subExpr);
@@ -28,7 +28,7 @@ public class Condition extends Expression {
 		return this;
 	}
 
-	public Condition or(Operator<Boolean> operator, Operand<?>... operands) {
+	public Condition or(Operator<Boolean> operator, Operand... operands) {
 		Expression subExpr = new Expression(operator, operands);
 		
 		this.append(Expression.OR, subExpr);
