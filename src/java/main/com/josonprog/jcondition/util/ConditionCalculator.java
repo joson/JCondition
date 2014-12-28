@@ -18,12 +18,12 @@ public class ConditionCalculator extends Calculator {
 	protected void calculateOperator(Operator<?> operator, CalculationContext context)
 			throws IllegalExpressionException {
 		
+		super.calculateOperator(operator, context);
+
 		ExpressionNode node = context.getCurrentNode();
 		ExpressionNode parent = node.parent();
 		Operator<?> parentOper = (Operator<?>) parent.getElem();
 		
-		super.calculateOperator(operator, context);
-
 		// if it's a boolean operation, such as and, or, not.
 		if (parentOper instanceof BoolOperator) {
 			List<?> calcStack = context.getCalcStack();
@@ -38,7 +38,7 @@ public class ConditionCalculator extends Calculator {
 				if ((parentOper instanceof AndOperator && !res)
 						|| (parentOper instanceof OrOperator && res)) {
 					
-					// skip the right operand value.
+					// skip the parent operation and return the current value.
 					skipParentOperation(parent, context.getIterator());
 				}
 			}
