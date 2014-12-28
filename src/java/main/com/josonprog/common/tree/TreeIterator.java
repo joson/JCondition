@@ -1,9 +1,6 @@
 package com.josonprog.common.tree;
 
-public interface TreeIterator {
+import java.util.Iterator;
 
-	public boolean hasNext();
-	
-	public TreeNode next();
-	
+public interface TreeIterator extends Iterator<TreeNode> {
 }

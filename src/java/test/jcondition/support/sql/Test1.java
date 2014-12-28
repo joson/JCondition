@@ -31,8 +31,6 @@ public class Test1 {
 	}
 	
 	public void test() {
-		School school = this.getSchoolSample();
-		
 		Variable sch = new Variable(School.class, "sch");
 		
 		PropertyVariable score;
@@ -72,14 +70,17 @@ public class Test1 {
 		SqlInterpreter interpreter = new SqlInterpreter();
 		String sql;
 		try {
+			long t1 = System.currentTimeMillis();
 			sql = interpreter.interpret(condition);
+			long t2 = System.currentTimeMillis();
+			System.out.println("progress:"+(t2-t1)+"ms");
 		} catch (OperationUnsupportedException e) {
 			e.printStackTrace();
 			return;
 		}
 		
 		System.out.println(sql);
-		
+
 		
 	}
 
