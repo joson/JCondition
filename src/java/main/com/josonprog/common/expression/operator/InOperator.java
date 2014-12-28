@@ -2,37 +2,34 @@ package com.josonprog.common.expression.operator;
 
 import java.util.ArrayList;
 
-import org.apache.commons.lang.ArrayUtils;
-
 import com.josonprog.common.expression.Operand;
 
 public class InOperator extends AbstractOperator<Boolean> {
 
 	public InOperator() {
-		super(2, 7);
+		super(2, new Class<?>[]{Operand.VAL_TYPE_NULL, ArrayList.class});
 	}
+	
 	
 
 	@Override
-	protected boolean validateOperandTypes(Operand... operands) {
-		if (!super.validateOperandTypes(operands))
+	protected boolean validateOperandTypes(Operand operand, int index) {
+		switch(index) {
+		case 0:
+			return super.validateOperandTypes(operand, index);
+		case 1:
+			return operand.getValue() instanceof ArrayList;
+		default:
 			return false;
-		
-		Object optionalList = operands[1].getValue();
-
-		// Regular expression could not be null.
-		if (optionalList == null || optionalList instanceof ArrayList)
-			return false;
-		
-		return true;
+		}
 	}
 
+
 	@Override
-	protected Boolean doOperate(Operand... operands) {
+	public Boolean operate(Object[] values) {
+		Object value = values[0];
+		ArrayList<?> optionalList = (ArrayList<?>) values[1];
 		
-		Object value = operands[0].getValue();
-		Object[] optionalList = ((ArrayList<?>) operands[1].getValue()).toArray();
-		
-		return ArrayUtils.contains(optionalList, value);
+		return optionalList.contains(value);
 	}
 }

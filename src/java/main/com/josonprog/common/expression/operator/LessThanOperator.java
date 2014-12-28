@@ -1,21 +1,12 @@
 package com.josonprog.common.expression.operator;
 
-import com.josonprog.common.expression.Operand;
+import org.apache.commons.lang.ObjectUtils;
 
 public final class LessThanOperator extends CompareOperator {
 
-	public LessThanOperator() {
-		super(6);
-	}
-
 	@Override
-	protected Boolean doOperate(Operand... operands) {
-		// left operand.
-		Operand operand1 = operands[0];
-		
-		// right operand.
-		Operand operand2 = operands[1];
-
-		return CompareOperator.compareTo(operand1, operand2) < 0;
+	public Boolean operate(Object[] values) {
+		return ObjectUtils.compare((Comparable<?>)values[0], (Comparable<?>)values[1]) < 0;
 	}
+	
 }

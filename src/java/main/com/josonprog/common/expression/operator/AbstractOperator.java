@@ -1,5 +1,9 @@
 package com.josonprog.common.expression.operator;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import com.josonprog.common.expression.Constant;
 import com.josonprog.common.expression.Operand;
 import com.josonprog.common.expression.Operator;
@@ -12,16 +16,36 @@ import com.josonprog.common.expression.Operator;
  * @param <T>
  */
 public abstract class AbstractOperator<T> implements Operator<T>{
+	/**
+	 * Amount of operands required.
+	 */
 	private int operandCount = 0;
 	
-	private int priority = 9999;
+	/**
+	 * Legal operand types.
+	 */
+	private Set<Class<?>> operTypeSet = new HashSet<Class<?>>();
 
 	public AbstractOperator() {
 	}
 
-	public AbstractOperator(int operandCount, int priority) {
+	/**
+	 * 
+	 * @param operandCount Amount of operands required.
+	 */
+	public AbstractOperator(int operandCount) {
 		this.operandCount = operandCount;
-		this.priority = priority;
+	}
+
+	/**
+	 * 
+	 * @param operandCount Amount of operands required.
+	 * @param operTypeSet Legal operand types.
+	 */
+	public AbstractOperator(int operandCount, Class<?>[] operTypeSet) {
+		this.operandCount = operandCount;
+		
+		Collections.addAll(this.operTypeSet, operTypeSet);
 	}
 	
 	@Override
@@ -33,22 +57,13 @@ public abstract class AbstractOperator<T> implements Operator<T>{
 		this.operandCount = operandCount;
 	}
 
-	@Override
-	public int getPriority() {
-		return priority;
-	}
-
-	protected void setPriority(int priority) {
-		this.priority = priority;
-	}
-
 	/**
 	 * Validate operand's amount and type.
 	 * 
 	 * @param operands
 	 * @exception IllegalOperandException 
 	 */
-	protected void prepareOperand(Operand... operands) throws IllegalOperandException {
+	protected Object[] prepareOperand(Operand... operands) throws IllegalOperandException {
 		// validate amount of operands.
 		if (operands.length != this.operandCount) {
 			StringBuffer msg = new StringBuffer();
@@ -58,40 +73,32 @@ public abstract class AbstractOperator<T> implements Operator<T>{
 			throw new IllegalOperandException(msg.toString());
 		}
 		
-		// validate operands' type.
-		if (!this.validateOperandTypes(operands)) {
-			throw new IllegalOperandException("Unexpected operands' type.");
-		}
-	}
-	
-	protected boolean validateOperandTypes(Operand...operands) {
-		for (int i = 0, len = operands.length; i < len; i++) {
-			if (operands[i] == null) {
-				return false;
+
+		// prepare operand values.
+		Object[] operVals = new Object[this.operandCount];
+		for (int i = 0; i < this.operandCount; i++) {
+			// validate operands' type.
+			if (this.validateOperandTypes(operands[i], i)) {
+				operVals[i] = operands[i].getValue();
+			} else {
+				throw new IllegalOperandException("Unexpected operands' type:"+operands[i].getValueType());
 			}
 		}
 		
-		return true;
+		return operVals;
+	}
+	
+	protected boolean validateOperandTypes(Operand operand, int index) {
+		return this.operTypeSet.contains(operand.getValueType());
 	}
 
 	@Override
 	public final Operand operate(Operand... operands)
 			throws IllegalArgumentException {
-		this.prepareOperand(operands);
+		Object[] values = this.prepareOperand(operands);
 		
-		T res = this.doOperate(operands);
+		T res = this.operate(values);
 		
 		return Constant.wrap(res);
 	}
-	
-
-	/**
-	 * Inner method for implementation by every final operator class.
-	 * Before this method is called, AbstractOperator has validate operands' legality.
-	 * 
-	 * @param operands
-	 * @return
-	 */
-	protected abstract T doOperate(Operand... operands);
-	
 }

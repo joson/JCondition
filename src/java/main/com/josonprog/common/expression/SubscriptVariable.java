@@ -37,11 +37,13 @@ public class SubscriptVariable extends Variable {
 	}
 
 	@Override
-	public Object invoke(ExpressionContext context)
+	public void invoke(ExpressionContext context)
 			throws InvocationTargetException {
+		this.owner.invoke(context);
 		
-		Object[] values = (Object[]) this.owner.invoke(context);
 		
-		return values[this.subscript];
+		Object[] values = (Object[]) this.owner.getValue();
+		
+		this.value = values[this.subscript];
 	}
 }

@@ -1,5 +1,7 @@
 package com.josonprog.common.expression;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * Operand, encapsulating a constant value or variable.
  * 
@@ -9,6 +11,8 @@ package com.josonprog.common.expression;
  */
 public class Operand 
 		implements ExpressionElement {
+	public static final Class<?> VAL_TYPE_NULL = null;
+	
 	
 	protected Object value;
 	
@@ -19,11 +23,15 @@ public class Operand
 	}
 	
 	public Class<?> getValueType() {
-		return value == null ? null : value.getClass();
+		return value == null ? VAL_TYPE_NULL : value.getClass();
 	}
 	
 	public Object getValue() {
 		return value;
+	}
+
+	public void invoke(ExpressionContext context)
+			throws InvocationTargetException {
 	}
 	
 	/*

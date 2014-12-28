@@ -47,10 +47,12 @@ public class PropertyVariable extends Variable {
 	}
 	
 	@Override
-	public Object invoke(ExpressionContext context) throws InvocationTargetException {
-		Object parentObj = this.owner.invoke(context);
+	public void invoke(ExpressionContext context) throws InvocationTargetException {
+		this.owner.invoke(context);
 		
-		return this.getter.invoke(parentObj, new Object[0]);
+		Object parentObj = this.owner.getValue();
+		
+		this.value = this.getter.invoke(parentObj, new Object[0]);
 	}
 
 }

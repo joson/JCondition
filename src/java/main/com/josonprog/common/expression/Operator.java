@@ -33,12 +33,18 @@ public interface Operator<T> extends ExpressionElement {
 	 * @return operation result.
 	 * @exception throw this exception if operands' type or amount are illegal.
 	 */
-	public abstract Operand operate(Operand... operands) throws IllegalArgumentException;
+	public Operand operate(Operand... operands) throws IllegalArgumentException;
+
+	/**
+	 * Before this method is called, make sure operand values' legality.
+	 * 
+	 * @param operands
+	 * @return
+	 */
+	public T operate(Object[] operandValues) throws IllegalArgumentException;
 
 	int getOperandCount();
 
-	int getPriority();
-	
 	/**
 	 * And operator.
 	 */

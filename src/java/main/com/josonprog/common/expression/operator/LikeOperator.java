@@ -7,39 +7,32 @@ import com.josonprog.common.expression.Operand;
 public class LikeOperator extends AbstractOperator<Boolean> {
 
 	public LikeOperator() {
-		super(2, 7);
+		super(2, new Class<?>[]{Operand.VAL_TYPE_NULL, String.class});
 	}
 	
 
 	@Override
-	protected boolean validateOperandTypes(Operand... operands) {
-		if (!super.validateOperandTypes(operands))
+	protected boolean validateOperandTypes(Operand operand, int index) {
+		switch(index) {
+		case 0:
+			return super.validateOperandTypes(operand, index);
+		case 1:
+			return operand.getValue() instanceof String;
+		default:
 			return false;
-		
-		Object value = operands[0].getValue();
-		Object regex = operands[1].getValue();
-
-		// The value could be null or a string.
-		if (value != null && value instanceof String)
-			return false;
-		
-		// Regular expression could not be null.
-		if (regex == null || regex instanceof String)
-			return false;
-		
-		return true;
+		}
 	}
-
+	
 	@Override
-	protected Boolean doOperate(Operand... operands) {
+	public Boolean operate(Object[] values) {
 		
-		String value = (String) operands[0].getValue();
-		String regex = (String) operands[1].getValue();
+		String value = (String) values[0];
+		String regex = (String) values[1];
 		
 		// Null matches nothing.
 		if (value == null) 
 			return false;
-		
-		return Pattern.matches(regex, value);
+		else
+			return Pattern.matches(regex, value);
 	}
 }

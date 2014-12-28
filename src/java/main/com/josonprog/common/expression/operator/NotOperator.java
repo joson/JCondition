@@ -1,16 +1,14 @@
 package com.josonprog.common.expression.operator;
 
-import com.josonprog.common.expression.Operand;
-
 public final class NotOperator extends BoolOperator {
 
 	public NotOperator() {
-		super(1, 2);
+		super(1);
 	}
 
 
 	@Override
-	protected Boolean doOperate(Operand... operands) {
-		return !((Boolean) operands[0].getValue());
+	public Boolean operate(Object[] values) {
+		return !((Boolean) values[0]);
 	}
 }

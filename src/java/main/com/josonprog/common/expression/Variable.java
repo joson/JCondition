@@ -50,8 +50,8 @@ public class Variable extends Operand {
 	 * @return
 	 * @throws InvocationTargetException
 	 */
-	public Object invoke(ExpressionContext context) throws InvocationTargetException {
+	@Override
+	public void invoke(ExpressionContext context) throws InvocationTargetException {
 		this.value = context.get(varName);
-		return value;
 	}
 }

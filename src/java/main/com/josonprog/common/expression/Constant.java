@@ -3,7 +3,7 @@ package com.josonprog.common.expression;
 public class Constant extends Operand {
 	public static final Constant NULL = new Constant(null);
 	
-	private Class<?> type = null;
+	private Class<?> type = VAL_TYPE_NULL;
 	
 	public Constant(Object value) {
 		this.value = value;
