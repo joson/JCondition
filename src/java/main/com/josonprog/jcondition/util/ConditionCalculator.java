@@ -13,7 +13,7 @@ import com.josonprog.common.expression.util.Calculator;
 import com.josonprog.common.expression.util.ExpressionIterator;
 
 public class ConditionCalculator extends Calculator {
-
+	
 	@Override
 	protected void calculateOperator(Operator<?> operator, CalculationContext context)
 			throws IllegalExpressionException {
